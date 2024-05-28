@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "24318807925",
+    "project_id": "kotlincomm-98022",
+    "storage_bucket": "kotlincomm-98022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24318807925:android:19668d74635213a7a4cd3c",
+        "android_client_info": {
+          "package_name": "com.devrachit.kotlincomm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4wNCZ1ToqS2O-rI2ZK9_Mf6X6r2e8RYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
