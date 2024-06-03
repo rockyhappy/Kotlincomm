@@ -1,5 +1,6 @@
 package com.devrachit.kotlincomm.firebaseClient
 
+import android.util.Log
 import com.devrachit.kotlincomm.utils.DataModel
 import com.devrachit.kotlincomm.utils.FirebaseFieldNames.LATEST_EVENT
 import com.devrachit.kotlincomm.utils.FirebaseFieldNames.PASSWORD
@@ -26,8 +27,11 @@ class FirebaseClient @Inject constructor(
         this.currentUsername = username
     }
     fun login(username: String, password: String, done: (Boolean, String?) -> Unit) {
+        println("FirebaseClient")
+        dbRef.child(username)
         dbRef.addListenerForSingleValueEvent(object  : MyEventListener(){
             override fun onDataChange(snapshot: DataSnapshot) {
+                println("FirebaseClient2")
                 //if the current user exists
                 if (snapshot.hasChild(username)){
                     //user exists , its time to check the password
@@ -36,9 +40,11 @@ class FirebaseClient @Inject constructor(
                         //password is correct and sign in
                         dbRef.child(username).child(STATUS).setValue(UserStatus.ONLINE)
                             .addOnCompleteListener {
+                                Log.e("FirebaseClient", "User is online")
                                 setUsername(username)
                                 done(true,null)
                             }.addOnFailureListener {
+                                Log.e("FirebaseClient", "User is offline")
                                 done(false,"${it.message}")
                             }
                     }else{
@@ -48,13 +54,16 @@ class FirebaseClient @Inject constructor(
 
                 }else{
                     //user doesnt exist, register the user
+                    println("FirebaseClient3")
                     dbRef.child(username).child(PASSWORD).setValue(password).addOnCompleteListener {
                         dbRef.child(username).child(STATUS).setValue(UserStatus.ONLINE)
                             .addOnCompleteListener {
                                 setUsername(username)
+                                Log.e("FirebaseClient", "User  online")
                                 done(true,null)
                             }.addOnFailureListener {
                                 done(false,it.message)
+                                Log.e("FirebaseClient", "User  offline")
                             }
                     }.addOnFailureListener {
                         done(false,it.message)

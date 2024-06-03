@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
     id ("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -59,5 +61,6 @@ dependencies {
     kspAndroidTest("com.google.dagger:hilt-compiler:2.50")
     testImplementation ("com.google.dagger:hilt-android-testing:2.50")
     kspTest ("com.google.dagger:hilt-compiler:2.50")
+    implementation ("com.mesibo.api:webrtc:1.0.5")
 
 }
