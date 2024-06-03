@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
     id ("com.google.dagger.hilt.android")
-//    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -56,10 +55,8 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation ("com.google.dagger:hilt-android:2.50")
     ksp("com.google.dagger:hilt-compiler:2.50")
-
     androidTestImplementation  ("com.google.dagger:hilt-android-testing:2.50")
     kspAndroidTest("com.google.dagger:hilt-compiler:2.50")
-
     testImplementation ("com.google.dagger:hilt-android-testing:2.50")
     kspTest ("com.google.dagger:hilt-compiler:2.50")
 
