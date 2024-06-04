@@ -32,12 +32,9 @@ class FirebaseClient @Inject constructor(
         dbRef.addListenerForSingleValueEvent(object  : MyEventListener(){
             override fun onDataChange(snapshot: DataSnapshot) {
                 println("FirebaseClient2")
-                //if the current user exists
                 if (snapshot.hasChild(username)){
-                    //user exists , its time to check the password
                     val dbPassword = snapshot.child(username).child(PASSWORD).value
                     if (password == dbPassword) {
-                        //password is correct and sign in
                         dbRef.child(username).child(STATUS).setValue(UserStatus.ONLINE)
                             .addOnCompleteListener {
                                 Log.e("FirebaseClient", "User is online")
@@ -48,12 +45,10 @@ class FirebaseClient @Inject constructor(
                                 done(false,"${it.message}")
                             }
                     }else{
-                        //password is wrong, notify user
                         done(false,"Password is wrong")
                     }
 
                 }else{
-                    //user doesnt exist, register the user
                     println("FirebaseClient3")
                     dbRef.child(username).child(PASSWORD).setValue(password).addOnCompleteListener {
                         dbRef.child(username).child(STATUS).setValue(UserStatus.ONLINE)

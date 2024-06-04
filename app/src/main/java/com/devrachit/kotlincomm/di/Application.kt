@@ -1,4 +1,4 @@
-package com.devrachit.kotlincomm.utils
+package com.devrachit.kotlincomm.di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
